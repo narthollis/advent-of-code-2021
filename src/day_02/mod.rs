@@ -27,11 +27,14 @@ pub fn input_generator(input: &str) -> Vec<Move> {
 pub fn solve_part1(input: &[Move]) -> u32 {
     let mut depth = 0;
     let mut distance = 0;
-    input.iter().for_each(|m| match m {
-        Move::Up(v) => depth -= v,
-        Move::Down(v) => depth += v,
-        Move::Forward(v) => distance += v,
-    });
+
+    for m in input {
+        match m {
+            Move::Up(v) => depth -= v,
+            Move::Down(v) => depth += v,
+            Move::Forward(v) => distance += v,
+        }
+    }
 
     depth * distance
 }
@@ -42,14 +45,16 @@ pub fn solve_part2(input: &[Move]) -> u32 {
     let mut distance = 0;
     let mut aim = 0;
 
-    input.iter().for_each(|m| match m {
-        Move::Up(v) => aim -= v,
-        Move::Down(v) => aim += v,
-        Move::Forward(v) => {
-            distance += v;
-            depth += aim * v;
+    for m in input {
+        match m {
+            Move::Up(v) => aim -= v,
+            Move::Down(v) => aim += v,
+            Move::Forward(v) => {
+                distance += v;
+                depth += aim * v;
+            }
         }
-    });
+    }
 
     depth * distance
 }
