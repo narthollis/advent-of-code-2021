@@ -58,36 +58,37 @@ fn get_most_common(input: &Vec<[bool; 12]>) -> [bool; 12] {
 pub fn solve_day3_part1(input: &[[bool; 12]]) -> u32 {
     let highs = get_most_common(&input.to_vec());
 
-    highs.iter().fold(0, |a, &v| a << 1 | (!v as u32)) * highs.iter().fold(0, |a, &v| a << 1 | (v as u32))    
+    highs.iter().fold(0, |a, &v| a << 1 | (!v as u32))
+        * highs.iter().fold(0, |a, &v| a << 1 | (v as u32))
 }
-
-
 
 #[aoc(day3, part2)]
 pub fn solve_day3_part2(input: &[[bool; 12]]) -> u32 {
     let mut pos = 0;
     let mut oxy = input.to_vec();
     while oxy.len() > 1 {
-        oxy = oxy.iter()
+        oxy = oxy
+            .iter()
             .filter(|&&i| i[pos] == get_most_common(&oxy)[pos])
             .map(|&i| i)
             .collect();
 
-        pos +=1
+        pos += 1
     }
 
     pos = 0;
     let mut co2 = input.to_vec();
     while co2.len() > 1 {
-        co2 = co2.iter()
+        co2 = co2
+            .iter()
             .filter(|&&i| i[pos] != get_most_common(&co2)[pos])
             .map(|&i| i)
             .collect();
 
-        pos +=1
+        pos += 1
     }
 
-    let oxy_int = oxy[0].iter().fold(0, |a, &v| a << 1 | (v as u32)); 
+    let oxy_int = oxy[0].iter().fold(0, |a, &v| a << 1 | (v as u32));
     let co2_int = co2[0].iter().fold(0, |a, &v| a << 1 | (v as u32));
 
     println!("oxy {:?} {:?}", oxy, oxy_int);

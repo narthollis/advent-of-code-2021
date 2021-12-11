@@ -1,9 +1,6 @@
 #[aoc_generator(day1)]
 pub fn input_generator(input: &str) -> Vec<u32> {
-    input
-        .lines()
-        .map(|l| l.trim().parse().unwrap())
-        .collect()
+    input.lines().map(|l| l.trim().parse().unwrap()).collect()
 }
 
 #[aoc(day1, part1)]

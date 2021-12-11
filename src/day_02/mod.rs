@@ -17,7 +17,7 @@ pub fn input_generator(input: &str) -> Vec<Move> {
                 "forward" => Move::Forward(v),
                 "up" => Move::Up(v),
                 "down" => Move::Down(v),
-                _ => panic!("unexpected direction")
+                _ => panic!("unexpected direction"),
             }
         })
         .collect()
@@ -58,4 +58,3 @@ pub fn solve_part2(input: &[Move]) -> u32 {
 
     depth * distance
 }
-
